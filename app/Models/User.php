@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Filters\BasicFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -55,5 +56,13 @@ class User extends Authenticatable
     public function scopeFilter(Builder $builder, BasicFilters $filters): Builder
     {
         return $filters->setBuilder($builder)->makeFilter();
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function dogs(): BelongsToMany
+    {
+        return $this->belongsToMany(Dog::class);
     }
 }

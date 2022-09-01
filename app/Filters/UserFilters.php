@@ -43,8 +43,26 @@ class UserFilters extends BasicFilters
         return $this->builder->where('location', 'like', '%' . $location . '%');
     }
 
-//    public function books()
-//    {
-//        return $this->builder->whereHas('location', 'like', '%' . $location . '%');
-//    }
+    /**
+     * @param string $dog_name
+     * @return Builder
+     */
+    public function dog_name(string $dog_name): Builder
+    {
+        return $this->builder->whereHas('dogs', function ($query) use ($dog_name){
+            $query->where('name', $dog_name);
+        });
+    }
+
+    /**
+     * @param string $dog_name
+     * @return Builder
+     */
+    public function dog_age(string $dog_name): Builder
+    {
+        return $this->builder->whereHas('dogs', function ($query) use ($dog_name){
+            $query->where('name', $dog_name);
+        });
+    }
+
 }
