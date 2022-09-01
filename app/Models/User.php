@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Filters\BasicFilter;
+use App\Filters\BasicFilters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -48,11 +48,11 @@ class User extends Authenticatable
 
 
     /**
-     * @param BasicFilter $filters
      * @param Builder $builder
+     * @param BasicFilters $filters
      * @return Builder
      */
-    public function scopeFilter(BasicFilter $filters, Builder $builder): Builder
+    public function scopeFilter(Builder $builder, BasicFilters $filters): Builder
     {
         return $filters->setBuilder($builder)->makeFilter();
     }

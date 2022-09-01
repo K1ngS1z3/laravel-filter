@@ -5,7 +5,7 @@ namespace App\Filters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-abstract class BasicFilter
+abstract class BasicFilters
 {
     /**
      * @var Builder
@@ -31,13 +31,16 @@ abstract class BasicFilter
         return $this;
     }
 
-    public function makeFilter()
+    /**
+     * @return Builder
+     */
+    public function makeFilter(): Builder
     {
         $filters = $this->request->query();
 
         foreach ($filters as $name => $value) {
             if (method_exists($this, $name)) {
-                    $this->{$name}($name);
+                $this->{$name}($value);
             }
         }
 
