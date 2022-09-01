@@ -5,7 +5,7 @@ namespace App\Filters;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
-abstract class BasicFilters
+abstract class BasicFilters implements FilterInterface
 {
     /**
      * @var Builder
